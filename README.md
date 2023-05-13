@@ -23,3 +23,9 @@ example output 2023-05-13T05:41:13.207339Z  INFO didkit_http: listening on 127.0
 take note of the port number used
 
 ## Streamlit
+
+## Tools
+(Didkit : create, update and delete DID related information)[https://github.com/spruceid/didkit]
+(Did:tz : create, update and delete DID related information with didkit on Rezos)[https://github.com/spruceid/did-tezos]
+(Temple : wallet tezos)[https://templewallet.com]
+(Taquito : bibliothèque JS pour discuter avec le wallet)[https://tezostaquito.io]
