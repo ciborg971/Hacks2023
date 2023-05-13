@@ -1,0 +1,6 @@
+[submodule "didkit"]
+	path = didkit
+	url = https://github.com/spruceid/didkit.git
+[submodule "ssi"]
+	path = ssi
+	url = https://github.com/spruceid/ssi
