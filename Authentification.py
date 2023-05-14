@@ -13,7 +13,7 @@ didkit_url = "http://localhost:3000"
 
 value = st_tez_did('TezosGraduate', 'mainnet')
 if value is not None:
-    st.session_state["WalletID"] = value["pub"]
+    st.session_state["WalletID"] = "did:pkh:tz:" + value["pub"]
 
 if "WalletID" not in st.session_state:
     st.write("### Click on the button above to connect your wallet")
@@ -58,4 +58,5 @@ if 'CV' in st.session_state and st.session_state['CV']["State"] != "Empty" and s
     r = requests.post(didkit_url + "/issue/credentials", data=payload, headers=headers)
     st.write(r)
     #print(r)
-    st.balloons()
+    if r == "<Response [400]>":
+        st.balloons()
