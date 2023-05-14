@@ -16,25 +16,79 @@ check that ssi and didkit folder exist and are not empty
 
 ``cargo build``
 
-### Requirement
+## Setup the streamlit widget
+
+from project root
+
+``cd st_tez_did``
+
+``cd src/st_tez_did/frontend``
+
+``npm install``
+
+``cd -``
+
+path should be HACKS2023/st_tez_did, and install it via
+
+``pip3 install -e .``
+
+Congratulation, you have now an awesome library to use Taquito/Temple wallet from Streamlit
+
+You can test it with 
+``streamlit run src/st_tez_did/__init__.py``
+
+## Requirement
 
 - A Temple wallet
 
+## Launch with launch script
+
+``chmod +x ./launch.sh``
+
+``./launch.sh``
+
+## Launch manualy
 ### Launch didkit-http
 
 from root of repository
 
-``./didkit/target/debug/didkit-http
-example output 2023-05-13T05:41:13.207339Z  INFO didkit_http: listening on 127.0.0.1:3000
-``
+./didkit/target/debug/didkit-http &
 
-note of the port number used
+example output : ``2023-05-13T05:41:13.207339Z  INFO didkit_http: listening on 127.0.0.1:3000``
 
-## Streamlit
+note the port number used
+
+### Streamlit
 
 from root of repository
 
 ``streamlit run Authentification.py``
+
+## Beyond the demo
+
+    - Generate an issuer_key
+
+``./didkit/target/debug/didkit generate-ed25519-key > issuer_key.jw``
+
+    - Generate a DID:Key document
+
+``did=$(./didkit/target/debug/didkit key-to-did -k issuer_key.jwk )``
+``printf 'DID: %s\n\n' "$did``
+
+output ``DID: did:key:z6MkjV9Ds7F3Qkbz1rAo9Zsq2C8SNzP8QCeQ4JSonZdjt9L``
+
+    - Generate verification method
+
+``verification_method=$(./didkit/target/debug/didkit key-to-verification-method -k issuer_key.jwk``
+
+``didkit: key-to-verification-method should be used with method pattern optio``
+
+``printf 'verificationMethod: %s\n\n' "$verification_method"``
+``verificationMethod:did:key:z6MkjV9Ds7F3Qkbz1rAo9Zsq2C8SNzP8QCeQ4JSonZdjt9La#z6MkjV9Ds7F3Qkbz1rAo9Zsq2C8SNzP8QCeQ4JSonZdjt9La``
+
+    - Launch didkit server with issuer key
+
+``./didkit/target/debug/didkit-http -p 3000 -k issuer_key.jwk & pid=$!``
 
 ## Tools
 
